@@ -16,6 +16,16 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class CallbackTest1 {
+    @Test
+    void shouldTestFromLection() {
+        open("http://localhost:9999");
+        SelenideElement form = $("[data-test-id=callback-form]");
+        form.$("[data-test-id=name] input").setValue("Василий");
+        form.$("[data-test-id=phone] input").setValue("+79270000000");
+        form.$("[data-test-id=agreement]").click();
+        form.$("[data-test-id=submit]").click();
+        $(".alert-success").shouldHave(exactText("Ваша заявка успешно отправлена!"));
+    }
 
     @Test
     void shouldTest() throws InterruptedException {
@@ -28,7 +38,7 @@ public class CallbackTest1 {
         $("[data-test-id=agreement]").click();
 //        Thread.sleep(6000);
         $("button").click();//
-        Thread.sleep(1000);
+//        Thread.sleep(1000);
         $("[data-test-id=\"order-success\"]").shouldHave(exactText("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время."));
     }
 
@@ -44,7 +54,7 @@ public class CallbackTest1 {
         $("[data-test-id=agreement]").click();
 //        Thread.sleep(6000);
         $("button").click();//
-        Thread.sleep(1000);
+//        Thread.sleep(1000);
         $("[data-test-id=phone] span.input__sub").shouldHave(exactText("Телефон указан неверно." +
                 " Должно быть 11 цифр, например, +79012345678."));
     }
@@ -60,7 +70,7 @@ public class CallbackTest1 {
         $("[data-test-id=agreement]").click();
 //        Thread.sleep(6000);
         $("button").click();//
-        Thread.sleep(1000);
+//        Thread.sleep(1000);
         $("span.input__sub").shouldHave(exactText("Имя и Фамилия указаные неверно." +
                 " Допустимы только русские буквы, пробелы и дефисы."));
 //        $("[data-test-id=agreement] span.checkbox__text").shouldBe(Color.getColor("#ff5c5c");
